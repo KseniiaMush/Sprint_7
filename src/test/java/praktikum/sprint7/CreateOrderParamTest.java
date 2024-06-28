@@ -1,6 +1,5 @@
 package praktikum.sprint7;
 
-import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
-public class CreateOrderTest {
+public class CreateOrderParamTest {
     private final String firstName;
     private final String lastName;
     private final String address;
@@ -19,7 +18,7 @@ public class CreateOrderTest {
     private final String comment;
     private final String[] color;
 
-    public CreateOrderTest(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDate, String comment, String[] color) {
+    public CreateOrderParamTest(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDate, String comment, String[] color) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;

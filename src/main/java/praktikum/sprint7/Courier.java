@@ -1,3 +1,7 @@
+package praktikum.sprint7;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
 public class Courier {
 
     private String login;
@@ -12,6 +16,11 @@ public class Courier {
 
     public String getLogin() {
         return login;
+    }
+
+    public Courier (String login, String password) {
+        this.login = login;
+        this.password = password;
     }
 
     public void setLogin(String login) {
@@ -38,4 +47,15 @@ public class Courier {
 
     }
 
+    public static Courier random() {
+        return new Courier(RandomStringUtils.random(10), RandomStringUtils.random(5), RandomStringUtils.random(10));
+    }
+
+    public static Courier basic() {
+        return new Courier("vovannumberone", "12345", "vovan");
+    }
+
+    public static Courier invalid() {
+        return new Courier(RandomStringUtils.random(10), RandomStringUtils.random(10));
+    }
 }
