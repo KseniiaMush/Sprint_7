@@ -13,7 +13,7 @@ public class LoginCourierTest {
 
     @Test
 
-    public void ValidParamsLogin() {
+    public void validParamsLogin() {
 
         Courier courier = Courier.random();
 
@@ -31,7 +31,7 @@ public class LoginCourierTest {
 
     @Test
 
-    public void InvalidParamsLogin() {
+    public void invalidParamsLogin() {
         CourierCredentials invalidParams= CourierCredentials.invalidParams();
         ValidatableResponse invalidResponse = client.loginCourier(invalidParams);
         client.checkInvalidParamsLoginError(invalidResponse);
@@ -39,7 +39,7 @@ public class LoginCourierTest {
 
     @Test
 
-    public void InvalidCredsLogin() {
+    public void invalidCredsLogin() {
         CourierCredentials invalidCreds = CourierCredentials.randomCourierCredentials();
         ValidatableResponse invalidResponse = client.loginCourier(invalidCreds);
         client.checkInvalidCredsLoginError(invalidResponse);

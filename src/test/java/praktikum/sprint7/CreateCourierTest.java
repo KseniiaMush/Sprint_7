@@ -6,6 +6,8 @@ import org.junit.Test;
 
 
 public class CreateCourierTest {
+    private int courierId;
+    private int courierCloneId;
 
    CourierClient client = new CourierClient();
 
@@ -19,12 +21,7 @@ public class CreateCourierTest {
         CourierCredentials creds = CourierCredentials.from(courier);
 
         ValidatableResponse loginResponse = client.loginCourier(creds);
-        int courierId = client.checkSuccessLogin(loginResponse);
-
-        if (courierId != 0) {
-            ValidatableResponse deleteResponse = client.deleteCourier(courierId);
-            client.checkDeleteSuccess(deleteResponse);
-        }
+        courierId = client.checkSuccessLogin(loginResponse);
     }
 
 
@@ -34,6 +31,10 @@ public class CreateCourierTest {
         Courier courier = Courier.random();
         ValidatableResponse createResponse = client.createCourier(courier);
         client.checkCreateSuccess(createResponse);
+        CourierCredentials creds = CourierCredentials.from(courier);
+
+        ValidatableResponse loginResponse = client.loginCourier(creds);
+        courierId = client.checkSuccessLogin(loginResponse);
 
         Courier cloneCourier = new Courier(courier.getLogin(), courier.getPassword(), courier.getFirstName());
         ValidatableResponse createCloneResponse = client.createCourier(cloneCourier);
@@ -47,5 +48,14 @@ public class CreateCourierTest {
         ValidatableResponse invalidResponse = client.createCourier(courier);
         client.checkInvalidParamsError(invalidResponse);
 
+    }
+
+    @After
+    public void deleteCourier() {
+
+        if (courierId != 0) {
+            ValidatableResponse deleteResponse = client.deleteCourier(courierId);
+            client.checkDeleteSuccess(deleteResponse);
+        }
     }
 }
